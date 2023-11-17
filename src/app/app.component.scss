@@ -1,7 +1,7 @@
 app-root {
   display: flex;
   justify-content: center;
-  height: 100% !important;
+  min-height: 100vh !important;
 }
 
 .datepicker-toggle {

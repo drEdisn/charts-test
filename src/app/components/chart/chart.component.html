@@ -8,10 +8,7 @@
     >
       🗑️
     </button>
-    <highcharts-chart
-      [Highcharts]="highcharts"
-      [options]="options"
-    ></highcharts-chart>
+    <div *chart="options"></div>
   </div>
 } @else {
   <app-empty-chart

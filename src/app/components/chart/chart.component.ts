@@ -6,6 +6,7 @@ import Highcharts from 'highcharts/es-modules/masters/highcharts.src';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { EmptyChartComponent } from '../empty-chart/empty-chart.component';
 import { RandomData } from 'src/app/app.component';
+import { ChartDirective } from 'src/app/core/directives/chart.directive';
 
 export type ChartType = 'line' | 'column' | null;
 export type ChartOptions = {
@@ -24,7 +25,7 @@ function getDateFormat(length: number): (date: Date) => string {
 @Component({
   selector: 'app-chart',
   standalone: true,
-  imports: [CommonModule, DropdownDirective, HighchartsChartModule, EmptyChartComponent],
+  imports: [CommonModule, DropdownDirective, HighchartsChartModule, EmptyChartComponent, ChartDirective],
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -59,8 +60,8 @@ export class ChartComponent implements OnChanges {
         acc[key] = this.data[key];
         return acc;
       },
-      {} as RandomData
-    ));
+        {} as RandomData
+      ));
   }
 
   setChartData(): void {
@@ -68,9 +69,9 @@ export class ChartComponent implements OnChanges {
       .reduce(
         (acc, data) => {
           acc[data[0]] = data[1].filter((items) => {
-              const date = Date.parse(items[0].toString());
-              return date > this.minDate && date < this.maxDate;
-            });
+            const date = Date.parse(items[0].toString());
+            return date > this.minDate && date < this.maxDate;
+          });
           return acc;
         },
         {} as RandomData
